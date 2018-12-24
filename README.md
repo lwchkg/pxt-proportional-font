@@ -1,6 +1,19 @@
-# pxt-proportional-font
+# Proportional font for micro:bit
 
-Currently work in progress. Do not use until this message is lifted.
+This is a set proportional font for the micro:bit.
+The font is more condensed than the system font,
+because most characters are less than 5 pixels wide.
+
+Here are the features of this package:
+- Narrower text, i.e. more efficient use of the LED display.
+- The "interval" of the show number/string blocks are settable.
+- A show space block, that scrolls a specified number of blank columns.
+- Text/number is always scrolled regardless of its length.
+
+**
+This package is still work in progress (see the TODO list).
+However, the API is already complete, and there is no forseeable changes.
+**
 
 ## TODO
 
@@ -15,7 +28,7 @@ Read more at https://makecode.microbit.org/packages/build-your-own
 
 ## License
 
-
+The code is available via MIT license.
 
 ## Supported targets
 

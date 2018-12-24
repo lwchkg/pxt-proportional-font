@@ -3,12 +3,12 @@
     "version": "0.0.0",
     "description": "",
     "dependencies": {
-        "core": "*",
-        "radio": "*"
+        "core": "*"
     },
     "files": [
         "README.md",
-        "main.ts"
+        "main.ts",
+        "LICENSE.ts"
     ],
     "testFiles": [
         "test.ts"

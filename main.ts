@@ -1,3 +1,7 @@
+// Copyright 2018 Leung Wing-chung. All rights reserved.
+// Use of this source code is governed by a MIT License, that can
+// be found in the LICENSE file.
+
 //% color="#1E66A6"
 //% block="Prop. Font"
 //% icon="\uf031"
@@ -69,13 +73,13 @@ namespace proportionalFont {
             let glyphWidth: number = getGlyphWidth(glyph);
 
             while (col < glyphWidth) {
-                // If col < 0, set to 0 for empty column.
-                let rowData: number = col < 0 ? 0 : getColumn(glyph, col);
-                displayColumn(rowData);
+                // If col < 0, set columnData to 0 for empty column.
+                let columnData: number = col < 0 ? 0 : getColumn(glyph, col);
+                displayColumn(columnData);
                 col++;
                 basic.pause(interval);
             }
-            col = -1;  // Pad one empty column.
+            col = -1;  // Pad one empty column in the next character.
         }
     }
 
