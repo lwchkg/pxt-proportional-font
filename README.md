@@ -1,6 +1,6 @@
 # pxt-proportional-font
 
-
+Currently work in progress. Do not use until this message is lifted.
 
 ## TODO
 
