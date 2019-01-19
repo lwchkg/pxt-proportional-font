@@ -5,6 +5,7 @@
 //% color="#1E66A6"
 //% block="Prop. Font"
 //% icon="\uf031"
+//% groups=["LED output", "Measurement"]
 namespace proportionalFont {
     // The font data from ASCII codes 32 to 126. Index padded by 32.
     // Format (bit 0 = lowest bit):
@@ -12,6 +13,7 @@ namespace proportionalFont {
     //   bits 3 to 7:  column 0 (bit 3 = row 0, bit 4 = row 1, etc.)
     //   bits 8 to 27 (if any): column 1 to 4
     // FIXME: Programs using the library fails to compile if fontData is number[].
+    // prettier-ignore
     const fontData = [
         "1", "185", "24603", "92102485", "19655237", "216566685", "170063685", "25",
         "4466", "3722", "85189717", "34858021", "6274", "34636837", "129", "25795",
@@ -69,6 +71,7 @@ namespace proportionalFont {
      * @param interval Speed of scroll; eg: 150, 100, 200
      */
     //% block="show number %num speed (ms) %interval" blockGap=8
+    //% group="LED output"
     export function showNumber(num: number, interval: number = 150) {
         showString(num.toString(), interval)
     }
@@ -78,6 +81,7 @@ namespace proportionalFont {
      * @param interval Speed of scroll; eg: 150, 100, 200
      */
     //% block="show string %text speed (ms) %interval" blockGap=8
+    //% group="LED output"
     export function showString(text: string, interval: number = 150) {
         let length: number = text.length;
         let col: number = 0;
@@ -102,6 +106,7 @@ namespace proportionalFont {
      * @param interval Speed of scroll; eg: 150, 100, 200
      */
     //% block="show space cols %cols speed (ms) %interval" blockGap=8
+    //% group="LED output"
     export function showSpace(cols: number = 1, interval: number = 150) {
         for (let col: number = 0; col < cols; col++) {
             displayColumn(0);
@@ -113,6 +118,7 @@ namespace proportionalFont {
      * Get the width of the number, in the number of LED columns.
      */
     //% block="get width of %text" blockGap=8
+    //% group="Measurement"
     export function getWidthOfNumber(num: number): number {
         return getWidthOfString(num.toString());
     }
@@ -121,6 +127,7 @@ namespace proportionalFont {
      * Get the width of the string, in the number of LED columns.
      */
     //% block="get width of %text" blockGap=8
+    //% group="Measurement"
     export function getWidthOfString(text: string): number {
         let length: number = text.length;
         let totalWidth: number = length - 1;
