@@ -4,7 +4,7 @@
         <filter id="ledglow" x="-1.5" y="-1" width="4" height="3">
             <feMorphology operator="dilate" radius="4" result="dilated" in="SourceAlpha" />
             <feGaussianBlur stdDeviation="5" in="dilated" result="blurred" />
-            <feFlood flood-color="rgb(255,17,77)" result="fill" />
+            <feFlood flood-color="{{ledOnGlowColor}}" result="fill" />
             <feComposite in="fill" in2="blurred" result="glow" operator="in" />
             <feMerge>
                 <feMergeNode in="glow" />
@@ -12,15 +12,15 @@
             </feMerge>
         </filter>
         <filter id="ledoff" x="-1.5" y="-1" width="4" height="3">
-            <feMorphology in="SourceGraphic" result="dilated" radius="2" operator="erode" />
+            <feMorphology operator="erode" in="SourceGraphic" radius="2" />
         </filter>
     </defs>
-    <rect width="100%" height="100%" fill="black" />
+    <rect width="100%" height="100%" fill="{{bgColor}}" />
     {%- for led in leds -%}
     {%- if led.isOn %}
-    <rect x="{{led.x}}" y="{{led.y}}" ry="3" height="24" width="14" style="fill:#ff7f7f;filter:url(#ledglow)" />
+    <rect x="{{led.x}}" y="{{led.y}}" ry="3" width="{{hSize}}" height="{{vSize}}" style="fill:{{ledOnColor}};filter:url(#ledglow)" />
     {%- else %}
-    <rect x="{{led.x}}" y="{{led.y}}" height="24" width="14" style="fill:#202020;filter:url(#ledoff)" />
+    <rect x="{{led.x}}" y="{{led.y}}" ry="2" width="{{hSize}}" height="{{vSize}}" style="fill:{{ledOffColor}};filter:url(#ledoff)" />
     {%- endif -%}
     {%- endfor %}
 </svg>
