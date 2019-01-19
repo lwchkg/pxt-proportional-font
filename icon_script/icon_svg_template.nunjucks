@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="{{width}}" height="{{height}}" viewBox="0 0 {{width}} {{height}}" version="1.1">
+    <defs>
+        <filter id="ledglow" x="-1.5" y="-1" width="4" height="3">
+            <feMorphology operator="dilate" radius="4" result="dilated" in="SourceAlpha" />
+            <feGaussianBlur stdDeviation="5" in="dilated" result="blurred" />
+            <feFlood flood-color="rgb(255,17,77)" result="fill" />
+            <feComposite in="fill" in2="blurred" result="glow" operator="in" />
+            <feMerge>
+                <feMergeNode in="glow" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+        <filter id="ledoff" x="-1.5" y="-1" width="4" height="3">
+            <feMorphology in="SourceGraphic" result="dilated" radius="2" operator="erode" />
+        </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="black" />
+    {%- for led in leds -%}
+    {%- if led.isOn %}
+    <rect x="{{led.x}}" y="{{led.y}}" ry="3" height="24" width="14" style="fill:#ff7f7f;filter:url(#ledglow)" />
+    {%- else %}
+    <rect x="{{led.x}}" y="{{led.y}}" height="24" width="14" style="fill:#202020;filter:url(#ledoff)" />
+    {%- endif -%}
+    {%- endfor %}
+</svg>
