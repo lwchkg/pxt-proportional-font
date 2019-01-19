@@ -1,4 +1,4 @@
-// Copyright 2018 Leung Wing-chung. All rights reserved.
+// Copyright 2018-2019 Leung Wing-chung. All rights reserved.
 // Use of this source code is governed by a MIT License, that can
 // be found in the LICENSE file.
 
