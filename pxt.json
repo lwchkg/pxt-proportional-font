@@ -1,7 +1,8 @@
 {
     "name": "pxt-proportional-font",
-    "version": "0.0.0",
-    "description": "",
+    "version": "1.0.0",
+    "description": "A proportional font for the micro:bit.",
+    "license": "MIT",
     "dependencies": {
         "core": "*"
     },
@@ -12,6 +13,5 @@
     "testFiles": [
         "test.ts"
     ],
-    "public": false,
-    "installedVersion": "workspace:faae8271-6c90-487b-e4d5-441c149ffd77"
+    "public": true
 }
