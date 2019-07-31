@@ -7,34 +7,35 @@
 //% icon="\uf031"
 //% groups=["LED output", "Measurement"]
 namespace proportionalFont {
-  // The font data from ASCII codes 32 to 126. Index padded by 32.
+  // The font data for ASCII codes 32 to 126. The glyph of each character is a
+  // number in Int32LE (typed in hexadecimals). The numbers are concatenated to
+  // form the buffer.
   // Format (bit 0 = lowest bit):
   //   bits 0 to 2:  width of character (max = 5)
   //   bits 3 to 7:  column 0 (bit 3 = row 0, bit 4 = row 1, etc.)
-  //   bits 8 to 27 (if any): column 1 to 4
-  // FIXME: Programs using the library fails to compile if fontData is number[].
-  // prettier-ignore
-  const fontData = [
-    "1", "185", "24603", "92102485", "19655237", "216566685", "170063685", "25",
-    "4466", "3722", "85189717", "34858021", "6274", "34636837", "129", "25795",
-    "119155", "7954", "186771", "87435", "2353764", "79291", "79219", "32011",
-    "87379", "120211", "81", "6786", "145310757", "86592085", "34687629", "21771",
-    "158839157", "248307", "87547", "143731", "119291", "144891", "9723", "110963",
-    "255227", "147339", "127299", "222459", "135419", "260604669", "8159996", "119155",
-    "17915", "252275", "214523", "79251", "16139", "258299", "63547", "65067069",
-    "222427", "64571", "161227", "4602", "197659", "8074", "49459", "135299",
-    "522", "234563", "70907", "169027", "259139", "170595", "48675", "236195",
-    "197883", "209", "7554", "166139", "4218", "202573029", "197859", "70723",
-    "35571", "248355", "34019", "6818", "171555", "233571", "102499", "104927333",
-    "166051", "121011", "5842", "147235", "249", "40843", "35684901"];
+  //   bits 8 to 27 (if any): columns 1 to 4
+  const fontData = hex`
+    01000000 B9000000 1B600000 555F7D05 45EA2B01 9D8BE80C 45F7220A 19000000
+    72110000 8A0E0000 55E41305 25E41302 82180000 25841002 81000000 C3640000
+    73D10100 121F0000 93D90200 8B550100 64EA2300 BB350100 73350100 0B7D0000
+    53550100 93D50100 51000000 821A0000 2544A908 554A2905 8D4A1102 0B550000
+    75B17709 F3C90300 FB550100 73310200 FBD10100 FB350200 FB250000 73B10100
+    FBE40300 8B3F0200 43F10100 FB640300 FB100200 FD82880F FC827C00 73D10100
+    FB450000 73D90300 FB450300 93350100 0B3F0000 FBF00300 3BF80000 3DD8E003
+    DB640300 3BFC0000 CB750200 FA110000 1B040300 8A1F0000 33C10000 83100200
+    0A020000 43940300 FB140100 43940200 43F40300 639A0200 23BE0000 A39A0300
+    FB040300 D1000000 821D0000 FB880200 7A100000 E504130C E3040300 43140100
+    F38A0000 23CA0300 E3840000 A21A0000 239E0200 63900300 63900100 65104106
+    A3880200 B3D80100 D2160000 233F0200 F9000000 8B9F0000 25822002`;
+  const fontDataLength: number = 95;
 
   /**
    * Obtain the character in the font. Return space if not in list.
    */
   function getGlyph(code: number): number {
     let index: number = code - 32;
-    if (index < 0 || index > fontData.length) index = 0;
-    return parseInt(fontData[index]);
+    if (index < 0 || index >= fontDataLength) index = 0;
+    return fontData.getNumber(NumberFormat.Int32LE, index << 2);
   }
 
   /**
